@@ -9,7 +9,7 @@ nav:
 
 theme:
   name: material
-    palette:
+  palette:
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/link
