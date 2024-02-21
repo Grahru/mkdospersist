@@ -1,2 +1,2 @@
 # About
-Este es el contenido de about.md
+Soy alumno de 2º de Asir

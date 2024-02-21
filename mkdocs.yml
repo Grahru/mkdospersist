@@ -1,9 +1,10 @@
-site_name: Andro.Verse
+site_name: Practicas de Grahru
 
 nav:
     - Principal: index.md
     - Acerca de: about.md
-    - Perfil: perfil.md
+    - Practica 1.1: 1-1.md
+    - Practica 2.2: 2-2.md
 
 theme:
   name: material
