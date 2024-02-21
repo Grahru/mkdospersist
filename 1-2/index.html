@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../1-1/">
+      
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -58,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#practica-12" class="md-skip">
+        <a href="#practica_12" class="md-skip">
           Skip to content
         </a>
       
@@ -244,18 +246,28 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../2-2.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Practica 2.2
+    Practica 1.2
   </span>
   
 
       </a>
+      
     </li>
   
 
@@ -293,8 +305,116 @@
                   
 
 
-<h1 id="practica-12">Practica 1.2</h1>
-<p><img alt="" src="https://img.freepik.com/vector-premium/robot-avanzado-pistola-laser-alien-hunter-arte-ilustracion-vectorial-imagen-icono-doodle-kawaii_10606-891.jpg" /></p>
+<h1 id="practica_12">Practica_1.2</h1>
+<h1 id="instalacion-pila-lamp">Instalacion pila LAMP</h1>
+<p>LAMP es el acrónimo usado para describir un sistema de infraestructura de Internet que usa las siguientes herramientas:</p>
+<ul>
+<li>Linux (Sistema Operativo)</li>
+<li>Apache (Servidor Web)</li>
+<li>MySQL/MariaDB (Sistema Gestor de Bases de Datos)</li>
+<li>PHP (Lenguaje de programación)</li>
+</ul>
+<p>Gracias a aws tenemos una maquina RedHat en la que trabajar por lo que la parte de linux ya esta cubierta. Por eso estaremos trabajando en consola de linux.</p>
+<h2 id="instalacion-aplicaciones">Instalacion Aplicaciones</h2>
+<p>Siempre que vayamos a instalar algo tenemos que actualizar los paquetes</p>
+<h3 id="actualizamos-los-paquetes">Actualizamos los paquetes</h3>
+<pre><code class="language-bash">dnf update -y
+</code></pre>
+<h2 id="instalar-apache">Instalar Apache</h2>
+<p>Comando de instalacion Apache <code>-y</code> para que no te pida confirmacion.</p>
+<pre><code class="language-bash">dnf install httpd -y
+</code></pre>
+<h3 id="iniciamos-el-servicio-apache">Iniciamos el servicio apache</h3>
+<pre><code class="language-bash">systemctl start httpd
+</code></pre>
+<h3 id="configuramos-para-que-el-servicio-inicie-automaticamente">Configuramos para que el servicio inicie automaticamente</h3>
+<pre><code class="language-bash">systemctl enable httpd
+</code></pre>
+<h2 id="instalar-mysql">Instalar MySQL</h2>
+<p>Comando de instalacion MySQL <code>-y</code> para que no te pida confirmacion. </p>
+<pre><code class="language-bash">dnf install mysql-server -y
+</code></pre>
+<h3 id="iniciamos-el-servicio-sql">Iniciamos el servicio sql</h3>
+<pre><code class="language-bash">systemctl start mysqld
+</code></pre>
+<h3 id="configuramos-para-que-el-servicio-inicie-automaticamente_1">Configuramos para que el servicio inicie automaticamente</h3>
+<pre><code class="language-bash">systemctl enable mysqld
+</code></pre>
+<h2 id="instalar-php">Instalar PhP</h2>
+<p>Comando de instalacion de php, el <code>-y</code> para que no te pida confirmacion.  </p>
+<pre><code class="language-bash">sudo dnf install php -y
+</code></pre>
+<h3 id="instalamos-extension-para-mysql">Instalamos extension para mysql</h3>
+<pre><code class="language-bash">sudo dnf install php-mysqlnd -y
+</code></pre>
+<h3 id="reiniciamos-el-servicio-apache">Reiniciamos el servicio apache</h3>
+<pre><code class="language-bash">sudo systemctl restart httpd
+</code></pre>
+<h2 id="copiar-info">Copiar info</h2>
+<p>Nuestro info.php pasa a estar en la carpeta donde apache mira su html.</p>
+<pre><code class="language-bash">cp ../php/info.php /var/www/html
+</code></pre>
+<h2 id="modificar-propietario-de-varwwwhtml-al-de-apache">Modificar  propietario de /var/www/html al de apache</h2>
+<p>Este comando es necesario para que apache funcione correctamente. <code>www-data</code> es el usuario de apache y le damos el propietario de la carpeta donde estan nuestros html.</p>
+<pre><code class="language-bash">chown -R www-data:www-data /var/www/html
+</code></pre>
+<h1 id="instalacion-de-tools">Instalacion de Tools</h1>
+<p>Para que los servicios funcionen correctamente en RedHat tendremos que instalar una serie de herramientas </p>
+<h2 id="actualizar-paquetes">Actualizar paquetes</h2>
+<pre><code class="language-bash">dnf update -y
+</code></pre>
+<h2 id="instalamos-modulos-php-necesarios-para-phpmyadmin">Instalamos modulos php necesarios para phpmyadmin</h2>
+<pre><code class="language-bash">dnf install php-mbstring php-zip php-json php-gd php-fpm php-xml -y
+</code></pre>
+<h2 id="reiniciamos-servicio-apache">Reiniciamos servicio apache</h2>
+<pre><code class="language-bash">systemctl restart httpd
+</code></pre>
+<h2 id="instalamos-la-utilidad-wget">Instalamos la utilidad wget</h2>
+<pre><code class="language-bash">dnf install wget -y
+</code></pre>
+<h2 id="eliminamos-descargas-previas">Eliminamos descargas previas</h2>
+<p>Esto hara que no se nos acumulen descargas si utilizamos el script varias veces.</p>
+<pre><code class="language-bash">rm -rf /tmp/phpMyAdmin-latest-all-languages.zip
+rm -rf /var/www/html/phpmyadmin
+</code></pre>
+<h2 id="descargamos-el-codigo-fuente-de-phpmyadmin">Descargamos el codigo fuente de phpmyadmin</h2>
+<pre><code class="language-bash">wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip -P /tmp
+</code></pre>
+<h2 id="instalamos-la-utilidad-unzip">Instalamos la utilidad unzip</h2>
+<pre><code class="language-bash">dnf install unzip -y
+</code></pre>
+<h2 id="descomprimimos-el-codigo-fuente-de-phpmyadmin-en-varwwwhtml">Descomprimimos el codigo fuente de phpMyadmin en /var/www/html</h2>
+<pre><code class="language-bash">unzip -u /tmp/phpMyAdmin-5.2.1-all-languages.zip -d /var/www/html
+</code></pre>
+<h2 id="renombramos-el-directorio">Renombramos el directorio</h2>
+<pre><code class="language-bash">mv /var/www/html/phpMyAdmin-5.2.1-all-languages /var/www/html/phpmyadmin
+</code></pre>
+<h2 id="cambiamos-propietario-y-el-grupo-a-varwwwhtml">Cambiamos propietario y el grupo a /var/www/html</h2>
+<pre><code class="language-bash">chown -R apache:apache /var/www/html
+</code></pre>
+<h2 id="creamos-archivo-de-configuracion-a-partir-de-el-de-ejemplo">Creamos archivo de configuracion a partir de el de ejemplo</h2>
+<pre><code class="language-bash">cp /var/www/html/phpmyadmin/config.sample.inc.php /var/www/html/phpmyadmin/config.inc.php
+</code></pre>
+<h2 id="generamos-un-valor-aleatorio-de-32-caracteres-para-la-variable-blowfish_secret">Generamos un valor aleatorio de 32 caracteres para la variable blowfish_secret</h2>
+<pre><code class="language-bash">RANDOM_VALUE=`openssl rand -hex 16`
+</code></pre>
+<h2 id="modificamos-la-variable-blowfish_secret-en-el-archivo-de-configuracion">Modificamos la variable blowfish_secret en el archivo de configuración</h2>
+<pre><code class="language-bash">sed -i &quot;s/\(\$cfg\['blowfish_secret'\] =\).*/\1 '$RANDOM_VALUE';/&quot; /var/www/html/phpmyadmin/config.inc.php
+</code></pre>
+<h2 id="modificamos-la-variable-blowfish_secret-en-el-archivo-de-configuracion_1">Modificamos la variable blowfish_secret en el archivo de configuración</h2>
+<pre><code class="language-bash">sed -i &quot;/blowfish_secrets/a \$cfg\['TempDir'\] = '/tmp';&quot; /var/www/html/phpmytadmin/config.inc.php
+</code></pre>
+<h2 id="eliminamos-la-base-de-datos-de-php-anterior-si-existe">Eliminamos la base de datos de php anterior si existe</h2>
+<pre><code class="language-bash">mysql -u root &lt;&lt;&lt; &quot;DROP DATABASE IF EXISTS phpmyadmin&quot;
+</code></pre>
+<h2 id="importamos-el-script-de-creacion-de-base-de-datos-de-phpmyadmin">Importamos el script  de creacion de base de datos de phpmyadmin</h2>
+<pre><code class="language-bash">mysql -u root &lt; /var/www/html/phpmyadmin/sql/create_tables.sql
+</code></pre>
+<h2 id="creamos-usuario-phpmyadmin">Creamos usuario phpmyadmin</h2>
+<pre><code class="language-bash">mysql -u root &lt;&lt;&lt; &quot;DROP USER IF EXISTS $PMA_USER@'%'&quot;
+mysql -u root &lt;&lt;&lt; &quot;CREATE USER $PMA_USER@'%' IDENTIFIED BY '$PMA_PASS'&quot;
+mysql -u root &lt;&lt;&lt; &quot;GRANT ALL PRIVILEGES ON $PMA_DB.* TO $PMA_USER@'%'&quot;
+</code></pre>
 
 
 
