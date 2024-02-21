@@ -3,7 +3,7 @@ site_name: IAW AGR
 nav:
     - Principal: index.md
     - Acerca de: about.md
-         - Perfil: perfil.md
+    - Perfil: perfil.md
 
 theme:
   name: readthedocs
