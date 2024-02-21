@@ -5,4 +5,7 @@ nav:
     - Acerca de: about.md
     - Perfil: perfil.md
 
-theme: material
+theme:
+  name: readthedocs
+  font:
+    text: Lora
