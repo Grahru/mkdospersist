@@ -6,6 +6,6 @@ nav:
     - Perfil: perfil.md
 
 theme:
-  name: readthedocs
+  name: Material
   font:
     text: Lora
