@@ -22,8 +22,8 @@ jobs:
 
       - name: Configure Git Credentials
         run: |
-          git config user.name grahru
-          git config user.email grahru@gmail.com
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@fake.email.org
 
       - name: Install Python3
         uses: actions/setup-python@v4
