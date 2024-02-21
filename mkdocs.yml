@@ -6,6 +6,6 @@ nav:
     - Perfil: perfil.md
 
 theme:
-  name: Material
+  name: material
   font:
     text: Lora
