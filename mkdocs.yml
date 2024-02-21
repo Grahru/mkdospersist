@@ -9,3 +9,5 @@ theme:
   name: readthedocs
   font:
     text: Lora
+  palette:
+    accent: indigo
