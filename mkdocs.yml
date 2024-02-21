@@ -3,8 +3,30 @@ site_name: Practicas de Grahru
 nav:
     - Principal: index.md
     - Acerca de: about.md
+    - Perfil: perfil.md
     - Practica 1.1: 1-1.md
     - Practica 1.2: 1-2.md
 
 theme:
   name: material
+    palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Lora
